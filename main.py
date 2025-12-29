@@ -7,7 +7,7 @@ app = FastAPI()
 # Enable CORS so your Frontend can talk to this Backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://word-automator-frontend.onrender.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
