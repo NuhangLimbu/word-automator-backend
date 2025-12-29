@@ -5,11 +5,13 @@ services:
     region: oregon
     plan: free
     branch: main
-    pythonVersion: 3.11.0  # Explicitly set Python version
     
+    # Force Python-only build
     buildCommand: |
-      python -m pip install --upgrade pip
-      pip install -r requirements.txt
+      echo "Installing Python packages..."
+      pip install --upgrade pip
+      pip install fastapi==0.104.1 uvicorn[standard]==0.24.0 python-dotenv==1.0.0
+      echo "Build complete!"
     
     startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
     
@@ -20,3 +22,4 @@ services:
         value: 3.11.0
     
     healthCheckPath: /health
+    healthCheckTimeout: 30
